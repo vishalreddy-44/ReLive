@@ -1,0 +1,790 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background: #f7f8f5;
+    color: #17221b;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.primary-btn,
+.secondary-btn,
+.login-btn,
+.ai-button {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.primary-btn {
+    background: #268056;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #18583b;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    border: 1px solid #cbd5ce;
+    background: white;
+}
+
+.secondary-btn:hover {
+    background: #eef3ef;
+}
+
+.login-btn:hover {
+    color: #1f6f4a;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 7%;
+    background: rgba(247, 248, 245, 0.95);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #e2e7e3;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1f6f4a;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 15px;
+    color: #46534b;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #1f6f4a;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 680px;
+    padding: 90px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-label,
+.section-label,
+.section-heading > span,
+.ai-badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #1f6f4a;
+}
+
+.hero-label {
+    padding: 8px 14px;
+    background: #e4f0e8;
+    border-radius: 30px;
+    letter-spacing: 0;
+}
+
+.hero h1 {
+    margin: 24px 0;
+    font-size: clamp(48px, 6vw, 78px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #1f6f4a;
+}
+
+.hero-content > p {
+    max-width: 540px;
+    margin-bottom: 32px;
+    color: #647068;
+    font-size: 18px;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.hero-visual {
+    width: 470px;
+    height: 470px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.hero-circle {
+    width: 280px;
+    height: 280px;
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dcecdf;
+    font-size: 90px;
+}
+
+.item-card {
+    position: absolute;
+    width: 220px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: 1px solid #e1e7e2;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(25, 50, 35, 0.08);
+}
+
+.item-card > span {
+    font-size: 30px;
+}
+
+.item-card strong,
+.item-card small {
+    display: block;
+}
+
+.item-card small {
+    margin-top: 3px;
+    color: #748078;
+    font-size: 12px;
+}
+
+.card-one {
+    top: 25px;
+    left: 0;
+}
+
+.card-two {
+    top: 205px;
+    right: 0;
+}
+
+.card-three {
+    bottom: 25px;
+    left: 20px;
+}
+
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+.section-heading {
+    max-width: 680px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.section-heading h2,
+.why-content h2,
+.ai-content h2 {
+    margin: 12px 0 16px;
+    font-size: clamp(34px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.section-heading p {
+    color: #68736c;
+}
+
+
+/* =========================
+   RELIVE FLOW
+========================= */
+
+.relive-flow {
+    display: none;
+    padding: 110px 7%;
+    background: #f7f8f5;
+}
+
+
+/* =========================
+   PROCESS CARDS
+========================= */
+
+.process-grid {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.process-card {
+    position: relative;
+    padding: 34px;
+    border: 1px solid #e3e9e4;
+    border-radius: 18px;
+    background: white;
+    transition: 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(25, 50, 35, 0.08);
+}
+
+.process-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-radius: 14px;
+    background: #e8f2eb;
+    font-size: 28px;
+}
+
+.step-number {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: #a4afa8;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.process-card h3 {
+    margin-bottom: 12px;
+    font-size: 23px;
+}
+
+.process-card p {
+    margin-bottom: 22px;
+    color: #6d776f;
+}
+
+.process-card a {
+    color: #1f6f4a;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PATH SECTIONS
+========================= */
+
+.path-section {
+    display: none;
+    padding: 100px 7%;
+    background: white;
+}
+
+.path-section .section-heading {
+    margin-bottom: 40px;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    max-width: 750px;
+    margin: auto;
+    padding: 40px;
+    background: #f7f8f5;
+    border: 1px solid #e1e7e2;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(25, 50, 35, 0.06);
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #344139;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #cfd8d1;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    color: #17221b;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #268056;
+}
+
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.submit-btn {
+    margin-top: 5px;
+}
+
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-it-works {
+    padding: 110px 7%;
+    background: white;
+}
+
+
+/* =========================
+   WHY RELIVE
+========================= */
+
+.why-relive {
+    max-width: 1200px;
+    margin: auto;
+    padding: 120px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+}
+
+.why-content > p {
+    max-width: 540px;
+    color: #69746d;
+}
+
+.feature-list {
+    margin-top: 35px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.feature-item > span {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #dcecdf;
+    color: #1f6f4a;
+    font-weight: bold;
+}
+
+.feature-item h3 {
+    margin-bottom: 4px;
+}
+
+.feature-item p {
+    color: #717b74;
+}
+
+
+/* =========================
+   DECISION CARD
+========================= */
+
+.decision-card {
+    padding: 35px;
+    background: #ffffff;
+    border: 1px solid #e1e7e2;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(25, 50, 35, 0.08);
+}
+
+.decision-title {
+    display: block;
+    margin-bottom: 24px;
+    color: #77817a;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.decision-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px 0;
+    border-bottom: 1px solid #edf0ed;
+}
+
+.decision-item > span {
+    font-size: 28px;
+}
+
+.decision-item div {
+    flex: 1;
+}
+
+.decision-item strong,
+.decision-item small {
+    display: block;
+}
+
+.decision-item small {
+    color: #7a847d;
+}
+
+.decision-item b {
+    font-size: 20px;
+}
+
+.ai-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+    padding: 15px;
+    background: #f1f6f2;
+    border-radius: 12px;
+}
+
+.ai-hint > span {
+    font-size: 22px;
+}
+
+.ai-hint p {
+    color: #657068;
+    font-size: 14px;
+}
+
+.ai-hint strong {
+    color: #1f6f4a;
+}
+
+
+/* =========================
+   EXPLORE
+========================= */
+
+.explore {
+    padding: 110px 7%;
+    background: white;
+}
+
+.category-grid {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.category-card {
+    padding: 30px;
+    border: 1px solid #e2e8e3;
+    border-radius: 16px;
+    transition: 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: #b9d2c0;
+}
+
+.category-card > span {
+    font-size: 38px;
+}
+
+.category-card h3 {
+    margin: 18px 0 7px;
+}
+
+.category-card p {
+    color: #717b74;
+    font-size: 14px;
+}
+
+
+/* =========================
+   AI SECTION
+========================= */
+
+.ai-section {
+    padding: 100px 7%;
+}
+
+.ai-content {
+    max-width: 900px;
+    margin: auto;
+    padding: 70px;
+    text-align: center;
+    border-radius: 24px;
+    background: #e6f0e8;
+}
+
+.ai-content p {
+    max-width: 650px;
+    margin: 0 auto 30px;
+    color: #627067;
+}
+
+.ai-button {
+    background: #1f6f4a;
+    color: white;
+}
+
+.ai-button:hover {
+    background: #18583b;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    padding: 55px 7%;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 50px;
+    background: #17221b;
+    color: white;
+}
+
+.footer .logo {
+    color: white;
+}
+
+.footer-brand p {
+    margin-top: 6px;
+    color: #aeb8b1;
+}
+
+.footer-links {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #c3cbc5;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.copyright {
+    color: #89958d;
+    font-size: 13px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 950px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content > p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-relive {
+        grid-template-columns: 1fr;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 18px 5%;
+    }
+
+    .nav-actions .login-btn {
+        display: none;
+    }
+
+    .hero {
+        padding: 70px 5%;
+    }
+
+    .hero h1 {
+        font-size: 46px;
+    }
+
+    .hero-visual {
+        width: 100%;
+        height: 400px;
+        transform: scale(0.8);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .why-relive,
+    .how-it-works,
+    .explore,
+    .relive-flow,
+    .path-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .ai-content {
+        padding: 45px 25px;
+    }
+
+    .footer {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+}
