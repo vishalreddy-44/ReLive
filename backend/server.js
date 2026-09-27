@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const itemRoutes = require("./routes/itemRoutes");
+const repairRoutes = require("./routes/repairRoutes");
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/items", itemRoutes);
+app.use("/api/repairs", repairRoutes);
 mongoose.connect(process.env.MONGO_URI)
     .then(function () {
         console.log("MongoDB connected successfully");

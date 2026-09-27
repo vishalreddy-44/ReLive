@@ -180,10 +180,14 @@ reuseSubmitBtn.addEventListener("click", async function () {
    REPAIR & SELL
 ========================= */
 
+/* =========================
+   REPAIR & SELL
+========================= */
+
 const repairSubmitBtn =
     document.getElementById("repair-submit-btn");
 
-repairSubmitBtn.addEventListener("click", function () {
+repairSubmitBtn.addEventListener("click", async function () {
 
     const itemName =
         document.getElementById("repair-item-name").value.trim();
@@ -197,6 +201,8 @@ repairSubmitBtn.addEventListener("click", function () {
     const location =
         document.getElementById("repair-location").value.trim();
 
+
+    /* Validate form */
 
     if (
         itemName === "" ||
@@ -212,14 +218,61 @@ repairSubmitBtn.addEventListener("click", function () {
     }
 
 
-    alert(
-        "Repair request submitted!\n\n" +
-        "Item: " + itemName + "\n" +
-        "Category: " + category
-    );
+    /* Send data to backend */
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/repairs",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    itemName: itemName,
+                    category: category,
+                    description: description,
+                    location: location
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (response.ok) {
+
+            alert("Repair request submitted successfully!");
+
+            document.getElementById("repair-item-name").value = "";
+            document.getElementById("repair-category").value = "";
+            document.getElementById("repair-description").value = "";
+            document.getElementById("repair-location").value = "";
+
+        } else {
+
+            alert(
+                "Failed to submit repair request: " +
+                data.message
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error("Error:", error);
+
+        alert(
+            "Could not connect to the ReLive server."
+        );
+
+    }
 
 });
-
 
 /* =========================
    SCRAP
