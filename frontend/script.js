@@ -1,9 +1,110 @@
 /* =========================
+   PAGE NAVIGATION
+========================= */
+
+const pageSections = [
+    document.getElementById("home"),
+    document.getElementById("how-it-works"),
+    document.getElementById("explore"),
+    document.getElementById("about"),
+    document.querySelector(".ai-section"),
+    document.getElementById("relive-flow"),
+    document.getElementById("reuse-section"),
+    document.getElementById("repair-section"),
+    document.getElementById("scrap-section")
+];
+
+
+function showPage(section) {
+
+    pageSections.forEach(function (page) {
+
+        if (page) {
+            page.style.display = "none";
+        }
+
+    });
+
+
+    if (section) {
+        section.style.display = "block";
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+const homeLink =
+    document.querySelector('.nav-links a[href="#home"]');
+
+const howItWorksLink =
+    document.querySelector('.nav-links a[href="#how-it-works"]');
+
+const exploreLink =
+    document.querySelector('.nav-links a[href="#explore"]');
+
+const aboutLink =
+    document.querySelector('.nav-links a[href="#about"]');
+
+
+homeLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    showPage(document.getElementById("home"));
+
+});
+
+
+howItWorksLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    showPage(document.getElementById("how-it-works"));
+
+});
+
+
+exploreLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    showPage(document.getElementById("explore"));
+
+});
+
+
+aboutLink.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    showPage(document.getElementById("about"));
+
+});
+
+
+/* =========================
    GET STARTED
 ========================= */
 
-const getStartedBtns = document.querySelectorAll(".get-started-btn");
-const reliveFlow = document.getElementById("relive-flow");
+const getStartedBtns =
+    document.querySelectorAll(".get-started-btn");
+
+const reliveFlow =
+    document.getElementById("relive-flow");
+
+const flowBackBtn =
+    document.getElementById("flow-back-btn");
+
 
 getStartedBtns.forEach(function (button) {
 
@@ -11,11 +112,9 @@ getStartedBtns.forEach(function (button) {
 
         event.preventDefault();
 
-        reliveFlow.style.display = "block";
+        showPage(reliveFlow);
 
-        reliveFlow.scrollIntoView({
-            behavior: "smooth"
-        });
+        document.body.classList.add("flow-open");
 
     });
 
@@ -23,21 +122,39 @@ getStartedBtns.forEach(function (button) {
 
 
 /* =========================
+   BACK FROM GET STARTED
+========================= */
+
+if (flowBackBtn) {
+
+    flowBackBtn.addEventListener("click", function () {
+
+        document.body.classList.remove("flow-open");
+
+        showPage(document.getElementById("home"));
+
+    });
+
+}
+
+
+/* =========================
    PATH SELECTION
 ========================= */
 
-const pathBtns = document.querySelectorAll(".path-btn");
-const pathSections = document.querySelectorAll(".path-section");
+const pathBtns =
+    document.querySelectorAll(".path-btn");
+
+const pathSections =
+    document.querySelectorAll(".path-section");
+
 
 pathBtns.forEach(function (button) {
 
     button.addEventListener("click", function () {
 
-        pathSections.forEach(function (section) {
-            section.style.display = "none";
-        });
+        let selectedSection = null;
 
-        let selectedSection;
 
         if (button.classList.contains("reuse-btn")) {
 
@@ -46,12 +163,14 @@ pathBtns.forEach(function (button) {
 
         }
 
+
         if (button.classList.contains("repair-btn")) {
 
             selectedSection =
                 document.getElementById("repair-section");
 
         }
+
 
         if (button.classList.contains("scrap-btn")) {
 
@@ -60,15 +179,31 @@ pathBtns.forEach(function (button) {
 
         }
 
+
         if (selectedSection) {
 
-            selectedSection.style.display = "block";
-
-            selectedSection.scrollIntoView({
-                behavior: "smooth"
-            });
+            showPage(selectedSection);
 
         }
+
+    });
+
+});
+
+
+/* =========================
+   BACK FROM PATH FORMS
+========================= */
+
+const pathBackBtns =
+    document.querySelectorAll(".path-back-btn");
+
+
+pathBackBtns.forEach(function (button) {
+
+    button.addEventListener("click", function () {
+
+        showPage(reliveFlow);
 
     });
 
@@ -81,6 +216,7 @@ pathBtns.forEach(function (button) {
 
 const reuseSubmitBtn =
     document.getElementById("reuse-submit-btn");
+
 
 reuseSubmitBtn.addEventListener("click", async function () {
 
@@ -100,8 +236,6 @@ reuseSubmitBtn.addEventListener("click", async function () {
         document.getElementById("reuse-location").value.trim();
 
 
-    /* Validate form */
-
     if (
         itemName === "" ||
         category === "" ||
@@ -116,8 +250,6 @@ reuseSubmitBtn.addEventListener("click", async function () {
 
     }
 
-
-    /* Send data to backend */
 
     try {
 
@@ -147,6 +279,7 @@ reuseSubmitBtn.addEventListener("click", async function () {
         if (response.ok) {
 
             alert("Item listed successfully!");
+
 
             document.getElementById("reuse-item-name").value = "";
             document.getElementById("reuse-category").value = "";
@@ -180,12 +313,9 @@ reuseSubmitBtn.addEventListener("click", async function () {
    REPAIR & SELL
 ========================= */
 
-/* =========================
-   REPAIR & SELL
-========================= */
-
 const repairSubmitBtn =
     document.getElementById("repair-submit-btn");
+
 
 repairSubmitBtn.addEventListener("click", async function () {
 
@@ -202,8 +332,6 @@ repairSubmitBtn.addEventListener("click", async function () {
         document.getElementById("repair-location").value.trim();
 
 
-    /* Validate form */
-
     if (
         itemName === "" ||
         category === "" ||
@@ -217,8 +345,6 @@ repairSubmitBtn.addEventListener("click", async function () {
 
     }
 
-
-    /* Send data to backend */
 
     try {
 
@@ -248,6 +374,7 @@ repairSubmitBtn.addEventListener("click", async function () {
 
             alert("Repair request submitted successfully!");
 
+
             document.getElementById("repair-item-name").value = "";
             document.getElementById("repair-category").value = "";
             document.getElementById("repair-description").value = "";
@@ -275,13 +402,13 @@ repairSubmitBtn.addEventListener("click", async function () {
 });
 
 
-
 /* =========================
    SCRAP
 ========================= */
 
 const scrapSubmitBtn =
     document.getElementById("scrap-submit-btn");
+
 
 scrapSubmitBtn.addEventListener("click", async function () {
 
@@ -298,8 +425,6 @@ scrapSubmitBtn.addEventListener("click", async function () {
         document.getElementById("scrap-location").value.trim();
 
 
-    /* Validate form */
-
     if (
         category === "" ||
         quantity === "" ||
@@ -312,8 +437,6 @@ scrapSubmitBtn.addEventListener("click", async function () {
 
     }
 
-
-    /* Send data to backend */
 
     try {
 
@@ -341,7 +464,10 @@ scrapSubmitBtn.addEventListener("click", async function () {
 
         if (response.ok) {
 
-            alert("Scrap pickup request submitted successfully!");
+            alert(
+                "Scrap pickup request submitted successfully!"
+            );
+
 
             document.getElementById("scrap-category").value = "";
             document.getElementById("scrap-quantity").value = "";
@@ -368,3 +494,10 @@ scrapSubmitBtn.addEventListener("click", async function () {
     }
 
 });
+
+
+/* =========================
+   INITIAL PAGE
+========================= */
+
+showPage(document.getElementById("home"));

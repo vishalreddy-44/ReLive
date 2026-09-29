@@ -189,7 +189,7 @@ select {
 ========================= */
 
 .hero-visual {
-    width: 470px;
+    width: 650px;
     height: 470px;
     position: relative;
     flex-shrink: 0;
@@ -199,19 +199,20 @@ select {
     width: 280px;
     height: 280px;
     position: absolute;
-    top: 90px;
-    left: 90px;
+    top: 80px;
+    left: 185px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     background: #dcecdf;
     font-size: 90px;
+    z-index: 1;
 }
 
 .item-card {
     position: absolute;
-    width: 220px;
+    width: 200px;
     padding: 18px;
     display: flex;
     align-items: center;
@@ -220,6 +221,7 @@ select {
     border: 1px solid #e1e7e2;
     border-radius: 14px;
     box-shadow: 0 15px 40px rgba(25, 50, 35, 0.08);
+    z-index: 2;
 }
 
 .item-card > span {
@@ -237,19 +239,22 @@ select {
     font-size: 12px;
 }
 
-.card-one {
-    top: 25px;
-    left: 0;
-}
 
-.card-two {
-    top: 205px;
-    right: 0;
+
+
+.card-one {
+    top: 5px;
+    left: 80px;
 }
 
 .card-three {
-    bottom: 25px;
-    left: 20px;
+    bottom: 40px;
+    left: 80px;
+}
+
+.card-two {
+    top: 200px;
+    right: -15px;
 }
 
 
@@ -283,8 +288,56 @@ select {
 
 .relive-flow {
     display: none;
-    padding: 110px 7%;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 100vh;
+    padding: 55px 6% 25px;
     background: #f7f8f5;
+    overflow: hidden;
+}
+
+
+/* =========================
+   FLOW BACK BUTTON
+========================= */
+
+.flow-back-btn {
+    position: absolute;
+    top: 15px;
+    left: 6%;
+    padding: 9px 17px;
+    border: 1px solid #cbd5ce;
+    border-radius: 8px;
+    background: white;
+    color: #1f6f4a;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.flow-back-btn:hover {
+    background: #eaf2ec;
+}
+
+
+/* =========================
+   GET STARTED HEADING
+========================= */
+
+.relive-flow .section-heading {
+    margin-bottom: 25px;
+}
+
+.relive-flow .section-heading h2 {
+    margin: 6px 0 10px;
+    font-size: 44px;
+    line-height: 1.05;
+}
+
+.relive-flow .section-heading p {
+    font-size: 16px;
 }
 
 
@@ -297,12 +350,12 @@ select {
     margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 22px;
 }
 
 .process-card {
     position: relative;
-    padding: 34px;
+    padding: 22px;
     border: 1px solid #e3e9e4;
     border-radius: 18px;
     background: white;
@@ -315,12 +368,12 @@ select {
 }
 
 .process-icon {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     border-radius: 14px;
     background: #e8f2eb;
     font-size: 28px;
@@ -328,20 +381,20 @@ select {
 
 .step-number {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 20px;
+    right: 20px;
     color: #a4afa8;
     font-size: 13px;
     font-weight: 700;
 }
 
 .process-card h3 {
-    margin-bottom: 12px;
-    font-size: 23px;
+    margin-bottom: 7px;
+    font-size: 21px;
 }
 
 .process-card p {
-    margin-bottom: 22px;
+    margin-bottom: 15px;
     color: #6d776f;
 }
 
@@ -351,19 +404,57 @@ select {
     font-size: 14px;
 }
 
-
 /* =========================
    PATH SECTIONS
 ========================= */
 
 .path-section {
     display: none;
-    padding: 100px 7%;
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    width: 100%;
+    height: 100vh;
+    padding: 55px 7% 25px;
     background: white;
+    overflow-y: auto;
 }
 
 .path-section .section-heading {
-    margin-bottom: 40px;
+    margin: 0 auto 22px;
+}
+
+.path-section .section-heading h2 {
+    margin: 5px 0 8px;
+    font-size: 44px;
+    line-height: 1.05;
+}
+
+.path-section .section-heading p {
+    font-size: 16px;
+}
+
+
+/* =========================
+   PATH BACK BUTTON
+========================= */
+
+.path-back-btn {
+    position: absolute;
+    top: 15px;
+    left: 7%;
+    padding: 8px 16px;
+    border: 1px solid #cbd5ce;
+    border-radius: 8px;
+    background: white;
+    color: #1f6f4a;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.path-back-btn:hover {
+    background: #eaf2ec;
 }
 
 
@@ -373,8 +464,8 @@ select {
 
 .form-card {
     max-width: 750px;
-    margin: auto;
-    padding: 40px;
+    margin: 0 auto;
+    padding: 28px 40px;
     background: #f7f8f5;
     border: 1px solid #e1e7e2;
     border-radius: 20px;
@@ -382,12 +473,12 @@ select {
 }
 
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 16px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-size: 14px;
     font-weight: 600;
     color: #344139;
@@ -397,7 +488,7 @@ select {
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 13px 15px;
+    padding: 12px 15px;
     border: 1px solid #cfd8d1;
     border-radius: 8px;
     outline: none;
@@ -412,7 +503,7 @@ select {
 }
 
 .form-group textarea {
-    min-height: 130px;
+    min-height: 110px;
     resize: vertical;
 }
 
@@ -423,7 +514,14 @@ select {
 }
 
 .submit-btn {
-    margin-top: 5px;
+    margin-top: 4px;
+}
+/* =========================
+   FLOW SCROLL LOCK
+========================= */
+
+body.flow-open {
+    overflow: hidden;
 }
 
 
@@ -725,6 +823,10 @@ select {
     .footer-links {
         justify-content: center;
     }
+
+    .relive-flow {
+        overflow-y: auto;
+    }
 }
 
 
@@ -765,6 +867,28 @@ select {
         padding-right: 5%;
     }
 
+    .relive-flow {
+        padding-top: 65px;
+        padding-bottom: 20px;
+    }
+
+    .flow-back-btn {
+        left: 5%;
+        top: 12px;
+    }
+
+    .relive-flow .section-heading {
+        margin-bottom: 25px;
+    }
+
+    .relive-flow .section-heading h2 {
+        font-size: 36px;
+    }
+
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+
     .category-grid {
         grid-template-columns: 1fr;
     }
@@ -785,6 +909,331 @@ select {
     .footer {
         padding-left: 5%;
         padding-right: 5%;
+    }
+
+}
+/* =========================
+   FINAL APP PAGE LAYOUT
+========================= */
+
+/* Fixed navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 5000;
+}
+
+
+/* Main content starts below navbar */
+main {
+    padding-top: 90px;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+.hero {
+    min-height: calc(100vh - 90px);
+    height: calc(100vh - 90px);
+
+    padding: 35px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-it-works {
+    min-height: calc(100vh - 90px);
+
+    padding: 45px 7%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* =========================
+   WHY RELIVE / ABOUT
+========================= */
+
+.why-relive {
+    min-height: calc(100vh - 90px);
+
+    padding: 45px 7%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+
+/* =========================
+   EXPLORE
+========================= */
+
+.explore {
+    min-height: calc(100vh - 90px);
+
+    padding: 45px 7%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+/* =========================
+   AI SECTION
+========================= */
+
+.ai-section {
+    min-height: calc(100vh - 90px);
+
+    padding: 45px 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   SECTION HEADINGS
+========================= */
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading h2,
+.why-content h2,
+.ai-content h2 {
+    margin: 8px 0 12px;
+}
+
+
+/* =========================
+   GET STARTED SCREEN
+========================= */
+
+.relive-flow {
+    position: fixed;
+
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 4000;
+
+    width: 100%;
+    height: calc(100vh - 90px);
+
+    padding: 35px 7%;
+
+    background: #f7f8f5;
+
+    overflow: hidden;
+}
+
+
+.relive-flow .section-heading {
+    margin-bottom: 25px;
+}
+
+
+.relive-flow .section-heading h2 {
+    font-size: 42px;
+    line-height: 1.05;
+}
+
+
+/* =========================
+   PATH FORM SCREENS
+========================= */
+
+.path-section {
+    position: fixed;
+
+    top: 90px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 4000;
+
+    width: 100%;
+    height: calc(100vh - 90px);
+
+    padding: 35px 7%;
+
+    background: white;
+
+    overflow-y: auto;
+}
+
+
+.path-section .section-heading {
+    margin-bottom: 22px;
+}
+
+
+.path-section .section-heading h2 {
+    margin: 5px 0 8px;
+    font-size: 42px;
+    line-height: 1.05;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    max-width: 750px;
+
+    margin: 0 auto;
+
+    padding: 25px 35px;
+
+    background: #f7f8f5;
+
+    border: 1px solid #e1e7e2;
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(25, 50, 35, 0.06);
+}
+
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 11px 14px;
+}
+
+
+.form-group textarea {
+    min-height: 95px;
+}
+
+
+/* =========================
+   BACK BUTTONS
+========================= */
+
+.flow-back-btn,
+.path-back-btn {
+    position: absolute;
+
+    top: 18px;
+    left: 7%;
+
+    padding: 8px 16px;
+
+    border: 1px solid #cbd5ce;
+    border-radius: 8px;
+
+    background: white;
+
+    color: #1f6f4a;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body.flow-open {
+    overflow: hidden;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 950px) {
+
+    .hero {
+        height: auto;
+        min-height: calc(100vh - 90px);
+    }
+
+    .why-relive {
+        min-height: auto;
+    }
+
+    .relive-flow {
+        overflow-y: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        height: 75px;
+    }
+
+    main {
+        padding-top: 75px;
+    }
+
+    .hero {
+        min-height: calc(100vh - 75px);
+        height: auto;
+        padding: 35px 5%;
+    }
+
+    .how-it-works,
+    .explore,
+    .why-relive,
+    .ai-section {
+        min-height: auto;
+        padding: 60px 5%;
+    }
+
+    .relive-flow,
+    .path-section {
+        top: 75px;
+        height: calc(100vh - 75px);
+
+        padding: 30px 5%;
+
+        overflow-y: auto;
     }
 
 }
