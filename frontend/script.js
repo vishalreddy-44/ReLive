@@ -274,6 +274,8 @@ repairSubmitBtn.addEventListener("click", async function () {
 
 });
 
+
+
 /* =========================
    SCRAP
 ========================= */
@@ -281,7 +283,7 @@ repairSubmitBtn.addEventListener("click", async function () {
 const scrapSubmitBtn =
     document.getElementById("scrap-submit-btn");
 
-scrapSubmitBtn.addEventListener("click", function () {
+scrapSubmitBtn.addEventListener("click", async function () {
 
     const category =
         document.getElementById("scrap-category").value;
@@ -296,6 +298,8 @@ scrapSubmitBtn.addEventListener("click", function () {
         document.getElementById("scrap-location").value.trim();
 
 
+    /* Validate form */
+
     if (
         category === "" ||
         quantity === "" ||
@@ -309,10 +313,58 @@ scrapSubmitBtn.addEventListener("click", function () {
     }
 
 
-    alert(
-        "Scrap pickup request created!\n\n" +
-        "Category: " + category + "\n" +
-        "Quantity: " + quantity + " " + unit
-    );
+    /* Send data to backend */
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/scrap",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    category: category,
+                    quantity: Number(quantity),
+                    unit: unit,
+                    location: location
+                })
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        if (response.ok) {
+
+            alert("Scrap pickup request submitted successfully!");
+
+            document.getElementById("scrap-category").value = "";
+            document.getElementById("scrap-quantity").value = "";
+            document.getElementById("scrap-unit").value = "kg";
+            document.getElementById("scrap-location").value = "";
+
+        } else {
+
+            alert(
+                "Failed to submit scrap request: " +
+                data.message
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error("Error:", error);
+
+        alert(
+            "Could not connect to the ReLive server."
+        );
+
+    }
 
 });

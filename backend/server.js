@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const itemRoutes = require("./routes/itemRoutes");
 const repairRoutes = require("./routes/repairRoutes");
+const scrapRoutes = require("./routes/scrapRoutes");
 dotenv.config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/items", itemRoutes);
 app.use("/api/repairs", repairRoutes);
+app.use("/api/scrap", scrapRoutes);
 mongoose.connect(process.env.MONGO_URI)
     .then(function () {
         console.log("MongoDB connected successfully");
