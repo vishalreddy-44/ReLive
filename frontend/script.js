@@ -1,6 +1,7 @@
-/* =========================
+
+/* =========================================
    PAGE NAVIGATION
-========================= */
+========================================= */
 
 const pageSections = [
     document.getElementById("home"),
@@ -25,11 +26,9 @@ function showPage(section) {
 
     });
 
-
     if (section) {
         section.style.display = "block";
     }
-
 
     window.scrollTo({
         top: 0,
@@ -39,9 +38,9 @@ function showPage(section) {
 }
 
 
-/* =========================
+/* =========================================
    NAVBAR
-========================= */
+========================================= */
 
 const homeLink =
     document.querySelector('.nav-links a[href="#home"]');
@@ -56,45 +55,63 @@ const aboutLink =
     document.querySelector('.nav-links a[href="#about"]');
 
 
-homeLink.addEventListener("click", function (event) {
+if (homeLink) {
+    homeLink.addEventListener("click", function (event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    showPage(document.getElementById("home"));
+        document.body.classList.remove("flow-open");
 
-});
+        showPage(document.getElementById("home"));
 
-
-howItWorksLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    showPage(document.getElementById("how-it-works"));
-
-});
+    });
+}
 
 
-exploreLink.addEventListener("click", function (event) {
+if (howItWorksLink) {
+    howItWorksLink.addEventListener("click", function (event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    showPage(document.getElementById("explore"));
+        document.body.classList.remove("flow-open");
 
-});
+        showPage(document.getElementById("how-it-works"));
 
-
-aboutLink.addEventListener("click", function (event) {
-
-    event.preventDefault();
-
-    showPage(document.getElementById("about"));
-
-});
+    });
+}
 
 
-/* =========================
+if (exploreLink) {
+    exploreLink.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        document.body.classList.remove("flow-open");
+
+        showPage(document.getElementById("explore"));
+
+        loadItems();
+
+    });
+}
+
+
+if (aboutLink) {
+    aboutLink.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        document.body.classList.remove("flow-open");
+
+        showPage(document.getElementById("about"));
+
+    });
+}
+
+
+/* =========================================
    GET STARTED
-========================= */
+========================================= */
 
 const getStartedBtns =
     document.querySelectorAll(".get-started-btn");
@@ -121,9 +138,9 @@ getStartedBtns.forEach(function (button) {
 });
 
 
-/* =========================
+/* =========================================
    BACK FROM GET STARTED
-========================= */
+========================================= */
 
 if (flowBackBtn) {
 
@@ -138,15 +155,12 @@ if (flowBackBtn) {
 }
 
 
-/* =========================
+/* =========================================
    PATH SELECTION
-========================= */
+========================================= */
 
 const pathBtns =
     document.querySelectorAll(".path-btn");
-
-const pathSections =
-    document.querySelectorAll(".path-section");
 
 
 pathBtns.forEach(function (button) {
@@ -155,14 +169,12 @@ pathBtns.forEach(function (button) {
 
         let selectedSection = null;
 
-
         if (button.classList.contains("reuse-btn")) {
 
             selectedSection =
                 document.getElementById("reuse-section");
 
         }
-
 
         if (button.classList.contains("repair-btn")) {
 
@@ -171,7 +183,6 @@ pathBtns.forEach(function (button) {
 
         }
 
-
         if (button.classList.contains("scrap-btn")) {
 
             selectedSection =
@@ -179,11 +190,8 @@ pathBtns.forEach(function (button) {
 
         }
 
-
         if (selectedSection) {
-
             showPage(selectedSection);
-
         }
 
     });
@@ -191,9 +199,9 @@ pathBtns.forEach(function (button) {
 });
 
 
-/* =========================
+/* =========================================
    BACK FROM PATH FORMS
-========================= */
+========================================= */
 
 const pathBackBtns =
     document.querySelectorAll(".path-back-btn");
@@ -210,294 +218,756 @@ pathBackBtns.forEach(function (button) {
 });
 
 
-/* =========================
+/* =========================================
    REUSE / SELL
-========================= */
+========================================= */
 
 const reuseSubmitBtn =
     document.getElementById("reuse-submit-btn");
 
 
-reuseSubmitBtn.addEventListener("click", async function () {
+if (reuseSubmitBtn) {
 
-    const itemName =
-        document.getElementById("reuse-item-name").value.trim();
+    reuseSubmitBtn.addEventListener("click", async function () {
 
-    const category =
-        document.getElementById("reuse-category").value;
+        const itemName =
+            document.getElementById("reuse-item-name").value.trim();
 
-    const description =
-        document.getElementById("reuse-description").value.trim();
+        const category =
+            document.getElementById("reuse-category").value;
 
-    const price =
-        document.getElementById("reuse-price").value;
+        const description =
+            document.getElementById("reuse-description").value.trim();
 
-    const location =
-        document.getElementById("reuse-location").value.trim();
+        const price =
+            document.getElementById("reuse-price").value;
 
-
-    if (
-        itemName === "" ||
-        category === "" ||
-        description === "" ||
-        price === "" ||
-        location === ""
-    ) {
-
-        alert("Please fill in all the fields.");
-
-        return;
-
-    }
+        const location =
+            document.getElementById("reuse-location").value.trim();
 
 
-    try {
+        if (
+            itemName === "" ||
+            category === "" ||
+            description === "" ||
+            price === "" ||
+            location === ""
+        ) {
 
-        const response = await fetch(
-            "http://localhost:5000/api/items",
-            {
-                method: "POST",
+            alert("Please fill in all the fields.");
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    name: itemName,
-                    category: category,
-                    description: description,
-                    price: Number(price),
-                    location: location
-                })
-            }
-        );
-
-
-        const data = await response.json();
-
-
-        if (response.ok) {
-
-            alert("Item listed successfully!");
-
-
-            document.getElementById("reuse-item-name").value = "";
-            document.getElementById("reuse-category").value = "";
-            document.getElementById("reuse-description").value = "";
-            document.getElementById("reuse-price").value = "";
-            document.getElementById("reuse-location").value = "";
-
-        } else {
-
-            alert(
-                "Failed to list item: " +
-                data.message
-            );
+            return;
 
         }
 
-    } catch (error) {
 
-        console.error("Error:", error);
+        if (Number(price) < 0) {
 
-        alert(
-            "Could not connect to the ReLive server."
-        );
+            alert("Price cannot be negative.");
 
-    }
+            return;
 
-});
+        }
 
 
-/* =========================
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/api/items",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name: itemName,
+                        category: category,
+                        description: description,
+                        price: Number(price),
+                        location: location
+                    })
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (response.ok) {
+
+                alert("Item listed successfully!");
+
+                document.getElementById("reuse-item-name").value = "";
+                document.getElementById("reuse-category").value = "";
+                document.getElementById("reuse-description").value = "";
+                document.getElementById("reuse-price").value = "";
+                document.getElementById("reuse-location").value = "";
+
+            } else {
+
+                alert(
+                    "Failed to list item: " + data.message
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            alert("Could not connect to the ReLive server.");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
    REPAIR & SELL
-========================= */
+========================================= */
 
 const repairSubmitBtn =
     document.getElementById("repair-submit-btn");
 
 
-repairSubmitBtn.addEventListener("click", async function () {
+if (repairSubmitBtn) {
 
-    const itemName =
-        document.getElementById("repair-item-name").value.trim();
+    repairSubmitBtn.addEventListener("click", async function () {
 
-    const category =
-        document.getElementById("repair-category").value;
+        const itemName =
+            document.getElementById("repair-item-name").value.trim();
 
-    const description =
-        document.getElementById("repair-description").value.trim();
+        const category =
+            document.getElementById("repair-category").value;
 
-    const location =
-        document.getElementById("repair-location").value.trim();
+        const description =
+            document.getElementById("repair-description").value.trim();
 
-
-    if (
-        itemName === "" ||
-        category === "" ||
-        description === "" ||
-        location === ""
-    ) {
-
-        alert("Please fill in all the fields.");
-
-        return;
-
-    }
+        const location =
+            document.getElementById("repair-location").value.trim();
 
 
-    try {
+        if (
+            itemName === "" ||
+            category === "" ||
+            description === "" ||
+            location === ""
+        ) {
 
-        const response = await fetch(
-            "http://localhost:5000/api/repairs",
-            {
-                method: "POST",
+            alert("Please fill in all the fields.");
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    itemName: itemName,
-                    category: category,
-                    description: description,
-                    location: location
-                })
-            }
-        );
-
-
-        const data = await response.json();
-
-
-        if (response.ok) {
-
-            alert("Repair request submitted successfully!");
-
-
-            document.getElementById("repair-item-name").value = "";
-            document.getElementById("repair-category").value = "";
-            document.getElementById("repair-description").value = "";
-            document.getElementById("repair-location").value = "";
-
-        } else {
-
-            alert(
-                "Failed to submit repair request: " +
-                data.message
-            );
+            return;
 
         }
 
-    } catch (error) {
 
-        console.error("Error:", error);
+        try {
 
-        alert(
-            "Could not connect to the ReLive server."
-        );
+            const response = await fetch(
+                "http://localhost:5000/api/repairs",
+                {
+                    method: "POST",
 
-    }
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-});
+                    body: JSON.stringify({
+                        itemName: itemName,
+                        category: category,
+                        description: description,
+                        location: location
+                    })
+                }
+            );
 
 
-/* =========================
+            const data = await response.json();
+
+
+            if (response.ok) {
+
+                alert("Repair request submitted successfully!");
+
+                document.getElementById("repair-item-name").value = "";
+                document.getElementById("repair-category").value = "";
+                document.getElementById("repair-description").value = "";
+                document.getElementById("repair-location").value = "";
+
+            } else {
+
+                alert(
+                    "Failed to submit repair request: " + data.message
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            alert("Could not connect to the ReLive server.");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
    SCRAP
-========================= */
+========================================= */
 
 const scrapSubmitBtn =
     document.getElementById("scrap-submit-btn");
 
 
-scrapSubmitBtn.addEventListener("click", async function () {
+if (scrapSubmitBtn) {
 
-    const category =
-        document.getElementById("scrap-category").value;
+    scrapSubmitBtn.addEventListener("click", async function () {
 
-    const quantity =
-        document.getElementById("scrap-quantity").value;
+        const category =
+            document.getElementById("scrap-category").value;
 
-    const unit =
-        document.getElementById("scrap-unit").value;
+        const quantity =
+            document.getElementById("scrap-quantity").value;
 
-    const location =
-        document.getElementById("scrap-location").value.trim();
+        const unit =
+            document.getElementById("scrap-unit").value;
+
+        const location =
+            document.getElementById("scrap-location").value.trim();
 
 
-    if (
-        category === "" ||
-        quantity === "" ||
-        location === ""
-    ) {
+        if (
+            category === "" ||
+            quantity === "" ||
+            location === ""
+        ) {
 
-        alert("Please fill in all the fields.");
+            alert("Please fill in all the fields.");
+
+            return;
+
+        }
+
+
+        if (Number(quantity) <= 0) {
+
+            alert("Quantity must be greater than zero.");
+
+            return;
+
+        }
+
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/api/scrap",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        category: category,
+                        quantity: Number(quantity),
+                        unit: unit,
+                        location: location
+                    })
+                }
+            );
+
+
+            const data = await response.json();
+
+
+            if (response.ok) {
+
+                alert("Scrap pickup request submitted successfully!");
+
+                document.getElementById("scrap-category").value = "";
+                document.getElementById("scrap-quantity").value = "";
+                document.getElementById("scrap-unit").value = "kg";
+                document.getElementById("scrap-location").value = "";
+
+            } else {
+
+                alert(
+                    "Failed to submit scrap request: " + data.message
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error("Error:", error);
+
+            alert("Could not connect to the ReLive server.");
+
+        }
+
+    });
+
+}
+
+
+/* =========================================
+   MARKETPLACE ELEMENTS
+========================================= */
+
+const itemsContainer =
+    document.getElementById("items-container");
+
+const searchInput =
+    document.getElementById("search-input");
+
+const categoryFilter =
+    document.getElementById("category-filter");
+
+const sortFilter =
+    document.getElementById("sort-filter");
+
+const itemModal =
+    document.getElementById("item-modal");
+
+const closeModalBtn =
+    document.getElementById("close-modal");
+
+const modalItemDetails =
+    document.getElementById("modal-item-details");
+
+
+let allItems = [];
+
+
+/* =========================================
+   CATEGORY ICONS
+========================================= */
+
+const categoryIcons = {
+    books: "📚",
+    furniture: "🪑",
+    electronics: "📱",
+    bicycles: "🚲",
+    bicycle: "🚲",
+    other: "📦"
+};
+
+
+/* =========================================
+   FETCH ITEMS FROM MONGODB
+========================================= */
+
+async function loadItems() {
+
+    if (!itemsContainer) {
+        return;
+    }
+
+    itemsContainer.textContent = "Loading items...";
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/items"
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || "Unable to fetch items");
+        }
+
+        allItems = Array.isArray(data.items) ? data.items : [];
+
+        renderItems();
+
+    } catch (error) {
+
+        console.error("Error loading items:", error);
+
+        itemsContainer.textContent =
+            "Unable to load items. Please try again.";
+
+    }
+
+}
+
+
+/* =========================================
+   SEARCH, FILTER AND SORT
+========================================= */
+
+function getFilteredItems() {
+
+    let filteredItems = [...allItems];
+
+
+    // SEARCH BY ITEM NAME
+
+    const searchText =
+        searchInput ? searchInput.value.trim().toLowerCase() : "";
+
+    if (searchText !== "") {
+
+        filteredItems = filteredItems.filter(function (item) {
+
+            return item.name.toLowerCase().includes(searchText);
+
+        });
+
+    }
+
+
+    // FILTER BY CATEGORY
+
+    const selectedCategory =
+        categoryFilter ? categoryFilter.value : "all";
+
+    if (selectedCategory !== "all") {
+
+        filteredItems = filteredItems.filter(function (item) {
+
+            return item.category.toLowerCase() === selectedCategory;
+
+        });
+
+    }
+
+
+    // SORT ITEMS
+
+    const selectedSort =
+        sortFilter ? sortFilter.value : "newest";
+
+    if (selectedSort === "low-high") {
+
+        filteredItems.sort(function (a, b) {
+            return Number(a.price) - Number(b.price);
+        });
+
+    } else if (selectedSort === "high-low") {
+
+        filteredItems.sort(function (a, b) {
+            return Number(b.price) - Number(a.price);
+        });
+
+    } else {
+
+        filteredItems.sort(function (a, b) {
+
+            return new Date(b.createdAt) - new Date(a.createdAt);
+
+        });
+
+    }
+
+    return filteredItems;
+
+}
+
+
+/* =========================================
+   DISPLAY MARKETPLACE ITEMS
+========================================= */
+
+function renderItems() {
+
+    if (!itemsContainer) {
+        return;
+    }
+
+    const filteredItems = getFilteredItems();
+
+    itemsContainer.innerHTML = "";
+
+
+    if (filteredItems.length === 0) {
+
+        const emptyMessage = document.createElement("p");
+
+        emptyMessage.className = "marketplace-empty";
+
+        emptyMessage.textContent =
+            allItems.length === 0
+                ? "No items listed yet. Be the first to list an item!"
+                : "No items match your search or filters.";
+
+        itemsContainer.appendChild(emptyMessage);
 
         return;
 
     }
 
 
-    try {
+    filteredItems.forEach(function (item) {
 
-        const response = await fetch(
-            "http://localhost:5000/api/scrap",
-            {
-                method: "POST",
+        const itemCard = document.createElement("article");
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+        itemCard.className = "marketplace-card";
 
-                body: JSON.stringify({
-                    category: category,
-                    quantity: Number(quantity),
-                    unit: unit,
-                    location: location
-                })
-            }
+
+        const itemIcon = document.createElement("div");
+
+        itemIcon.className = "marketplace-item-icon";
+
+        itemIcon.textContent =
+            categoryIcons[item.category.toLowerCase()] || "📦";
+
+
+        const itemDetails = document.createElement("div");
+
+        itemDetails.className = "marketplace-item-details";
+
+
+        const name = document.createElement("h3");
+
+        name.textContent = item.name;
+
+
+        const category = document.createElement("span");
+
+        category.className = "item-category";
+
+        category.textContent = item.category;
+
+
+        const description = document.createElement("p");
+
+        description.textContent = item.description;
+
+
+        const price = document.createElement("strong");
+
+        price.textContent = "₹" + Number(item.price).toLocaleString("en-IN");
+
+
+        const location = document.createElement("small");
+
+        location.textContent = "📍 " + item.location;
+
+
+        const detailsButton = document.createElement("button");
+
+        detailsButton.className = "view-details-btn";
+
+        detailsButton.type = "button";
+
+        detailsButton.textContent = "View Details";
+
+        detailsButton.addEventListener("click", function () {
+
+            openItemDetails(item);
+
+        });
+
+
+        itemDetails.append(
+            name,
+            category,
+            description,
+            price,
+            location,
+            detailsButton
         );
 
 
-        const data = await response.json();
+        itemCard.append(
+            itemIcon,
+            itemDetails
+        );
 
 
-        if (response.ok) {
+        itemsContainer.appendChild(itemCard);
 
-            alert(
-                "Scrap pickup request submitted successfully!"
-            );
+    });
+
+}
 
 
-            document.getElementById("scrap-category").value = "";
-            document.getElementById("scrap-quantity").value = "";
-            document.getElementById("scrap-unit").value = "kg";
-            document.getElementById("scrap-location").value = "";
+/* =========================================
+   ITEM DETAILS POPUP
+========================================= */
 
-        } else {
+function openItemDetails(item) {
 
-            alert(
-                "Failed to submit scrap request: " +
-                data.message
-            );
+    if (!itemModal || !modalItemDetails) {
+        return;
+    }
 
+    modalItemDetails.innerHTML = "";
+
+
+    const icon = document.createElement("div");
+
+    icon.className = "modal-item-icon";
+
+    icon.textContent =
+        categoryIcons[item.category.toLowerCase()] || "📦";
+
+
+    const name = document.createElement("h2");
+
+    name.id = "modal-item-title";
+
+    name.textContent = item.name;
+
+
+    const category = document.createElement("span");
+
+    category.className = "item-category";
+
+    category.textContent = item.category;
+
+
+    const description = document.createElement("p");
+
+    description.textContent = item.description;
+
+
+    const price = document.createElement("strong");
+
+    price.textContent =
+        "₹" + Number(item.price).toLocaleString("en-IN");
+
+
+    const location = document.createElement("small");
+
+    location.textContent = "📍 " + item.location;
+
+
+    modalItemDetails.append(
+        icon,
+        name,
+        category,
+        description,
+        price,
+        location
+    );
+
+
+    itemModal.classList.add("active");
+
+    itemModal.setAttribute("aria-hidden", "false");
+
+}
+
+
+function closeItemDetails() {
+
+    if (!itemModal) {
+        return;
+    }
+
+    itemModal.classList.remove("active");
+
+    itemModal.setAttribute("aria-hidden", "true");
+
+}
+
+
+if (closeModalBtn) {
+
+    closeModalBtn.addEventListener("click", closeItemDetails);
+
+}
+
+
+if (itemModal) {
+
+    itemModal.addEventListener("click", function (event) {
+
+        if (event.target === itemModal) {
+            closeItemDetails();
         }
 
-    } catch (error) {
+    });
 
-        console.error("Error:", error);
+}
 
-        alert(
-            "Could not connect to the ReLive server."
-        );
 
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+        closeItemDetails();
     }
 
 });
 
 
-/* =========================
+/* =========================================
+   SEARCH AND FILTER EVENTS
+========================================= */
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", renderItems);
+
+}
+
+
+if (categoryFilter) {
+
+    categoryFilter.addEventListener("change", renderItems);
+
+}
+
+
+if (sortFilter) {
+
+    sortFilter.addEventListener("change", renderItems);
+
+}
+
+
+/* =========================================
+   CATEGORY CARD SHORTCUTS
+========================================= */
+
+const categoryCards =
+    document.querySelectorAll(".category-card");
+
+
+categoryCards.forEach(function (card) {
+
+    card.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const heading = card.querySelector("h3");
+
+        if (heading && categoryFilter) {
+
+            const selectedCategory =
+                heading.textContent.trim().toLowerCase();
+
+            categoryFilter.value = selectedCategory;
+
+            renderItems();
+
+            document.querySelector(".marketplace").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    });
+
+});
+
+
+/* =========================================
    INITIAL PAGE
-========================= */
+========================================= */
 
 showPage(document.getElementById("home"));

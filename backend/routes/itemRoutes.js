@@ -1,7 +1,40 @@
+
 const express = require("express");
 const Item = require("../models/Item");
 
 const router = express.Router();
+
+
+/* =========================
+   GET ALL ITEMS
+========================= */
+
+router.get("/", async function (req, res) {
+
+    try {
+
+        const items = await Item.find().sort({ createdAt: -1 });
+
+        res.status(200).json({
+            message: "Items fetched successfully",
+            items: items
+        });
+
+    } catch (error) {
+
+        res.status(500).json({
+            message: "Failed to fetch items",
+            error: error.message
+        });
+
+    }
+
+});
+
+
+/* =========================
+   ADD NEW ITEM
+========================= */
 
 router.post("/", async function (req, res) {
 
@@ -32,5 +65,6 @@ router.post("/", async function (req, res) {
     }
 
 });
+
 
 module.exports = router;
